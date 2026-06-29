@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_resume_ai_root"
+        name="Resume AI"
+        web_icon="resume_ai_analysis,static/description/icon.png"
+        sequence="90"/>
+
+    <!-- CVs -->
+    <menuitem id="menu_resume_cv"
+        name="CVs"
+        parent="menu_resume_ai_root"
+        action="action_resume_cv"
+        sequence="10"/>
+
+    <!-- Consultas -->
+    <menuitem id="menu_resume_consulta"
+        name="Consultas"
+        parent="menu_resume_ai_root"
+        action="action_resume_consulta"
+        sequence="20"/>
+
+    <!-- Knowledge Base -->
+    <menuitem id="menu_knowledge_document"
+        name="Base de Conocimiento (Qdrant)"
+        parent="menu_resume_ai_root"
+        action="action_knowledge_document"
+        sequence="30"/>
+
+    <menuitem id="menu_knowledge_consulta"
+        name="Chat / Asistente"
+        parent="menu_resume_ai_root"
+        action="action_knowledge_consulta"
+        sequence="40"/>
+
+</odoo>

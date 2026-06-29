@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_job_form_inherit_top_candidates" model="ir.ui.view">
+            <field name="name">hr.job.form.inherit.top.candidates</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='job_description_page']" position="after">
+                    <page name="analysis_candidates_page" string="Análisis Postulantes">
+                        <group>
+                            <group>
+                                <field name="top_candidates_count" class="oe_inline" />
+                            </group>
+                        </group>
+                        <separator string="Top de Mejores Candidatos (Orden Descendente por IA)" />
+                        <field name="top_applicant_ids" mode="list">
+                            <list create="false" edit="false" delete="false" empty_statement="No hay postulantes calificados por IA para este puesto de trabajo.">
+                                <field name="candidate_id" string="Candidato" />
+                                <field name="email_from" />
+                                <field name="partner_phone" />
+                                <field name="ai_score" widget="badge" decoration-success="ai_score &gt;= 80" decoration-warning="ai_score &lt; 80 and ai_score &gt;= 60" decoration-danger="ai_score &lt; 60" />
+                                <field name="stage_id" widget="many2one" />
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

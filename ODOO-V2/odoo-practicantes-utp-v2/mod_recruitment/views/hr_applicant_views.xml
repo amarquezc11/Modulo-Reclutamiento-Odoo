@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_applicant_form_inherit_mod_recruitment" model="ir.ui.view">
+        <field name="name">hr.applicant.form.inherit.mod_recruitment</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="ai_analysis_status" string="Estado Análisis IA" readonly="1" widget="badge" decoration-info="ai_analysis_status == 'processing'" decoration-success="ai_analysis_status == 'done'" decoration-danger="ai_analysis_status == 'failed'" optional="show" />
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page name="ai_analysis_page" string="Análisis de IA">
+                    <group>
+                        <group string="Resumen de Evaluación">
+                            <field name="ai_score" string="Puntaje General (0-100)" readonly="1" />
+                            <field name="ai_analysis_status" string="Estado del Análisis" readonly="1" />
+                            <field name="resume_cv_id" string="CV Vinculado" readonly="1" />
+                        </group>
+                        <group string="Diagnóstico de Fallos" invisible="ai_analysis_status != 'failed'">
+                            <field name="ai_error_msg" string="Detalle del Error" readonly="1" />
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert" style="margin-bottom: 15px;" invisible="ai_analysis_status != 'processing'">
+                        <span class="fa fa-spinner fa-spin" />
+                        Analizando currículum con Gemini 2.5 Flash... Por favor, espere.
+                    </div>
+                </page>
+            </xpath>
+
+            <!-- Modificamos los campos a solo lectura -->
+            <xpath expr="//field[@name='source_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='medium_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='salary_expected']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='availability']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='type_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

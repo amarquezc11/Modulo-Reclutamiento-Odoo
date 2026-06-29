@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mod_recruitment_hr_applicant,access.hr.applicant,model_hr_applicant,base.group_user,1,1,1,0
+access_mod_recruitment_ir_attachment,access.ir.attachment,model_ir_attachment,base.group_user,1,1,0,0
+access_mod_recruitment_hr_job,access.hr.job,model_hr_job,base.group_user,1,1,1,1
